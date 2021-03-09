@@ -22,6 +22,10 @@ local.properties
 .idea/assetWizardSettings.xml
 .idea/dictionaries
 .idea/libraries
+.idea/vcs.xml
+.idea/gradle.xml
+.idea/runConfigurations.xml
+.idea/misc.xml
 
 # Android Studio 3 in .gitignore file
 .idea/caches
