@@ -1,5 +1,6 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
@@ -39,5 +40,16 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_neighbour);
         mApiService = DI.getNeighbourApiService();
+
+    }
+
+    /**
+     * Used to navigate to this activity
+     * @param context
+     */
+    public static void navigate(Context context,Neighbour neighbour) {
+        Intent intent = new Intent().setClass(context,ListNeighbourActivity.class);
+        intent.putExtra("neighbour",neighbour);
+        ActivityCompat.startActivity(context, intent, null);
     }
 }
