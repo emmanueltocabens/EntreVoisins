@@ -1,11 +1,12 @@
 package com.openclassrooms.entrevoisins.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Model object representing a Neighbour
  */
-public class Neighbour {
+public class Neighbour implements Serializable {
 
     /** Identifier */
     private long id;
@@ -16,7 +17,7 @@ public class Neighbour {
     /** Avatar */
     private String avatarUrl;
 
-    /** Adress */
+    /** Address */
     private String address;
 
     /** Phone number */
@@ -24,6 +25,9 @@ public class Neighbour {
 
     /** About me */
     private String aboutMe;
+
+    /**  user's belongs to favourite users */
+    private boolean isFavourite;
 
     /**
      * Constructor
@@ -87,6 +91,14 @@ public class Neighbour {
 
     public void setAboutMe(String aboutMe) {
         this.aboutMe = aboutMe;
+    }
+
+    public boolean isFavourite() {
+        return this.isFavourite;
+    }
+
+    public void setIsFavourite(boolean status){
+        this.isFavourite = status;
     }
 
     @Override
