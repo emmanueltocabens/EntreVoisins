@@ -6,30 +6,46 @@
     android:id="@+id/detail_coordinator_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/detail_constraint_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/detail_appbarlayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/detail_image_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            </ImageView>
+                <ImageView
+                    android:id="@+id/detail_image_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:contentDescription="@string/detail_imgview_desc" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/fab_favoris"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/detail_image_view"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:contentDescription="@string/detail_fab_desc" />
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
+    </android.support.constraint.ConstraintLayout>
 
     <include layout = "@layout/content_detail_neighbour"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_favoris"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_fav_off"/>
+
 
 </android.support.design.widget.CoordinatorLayout>

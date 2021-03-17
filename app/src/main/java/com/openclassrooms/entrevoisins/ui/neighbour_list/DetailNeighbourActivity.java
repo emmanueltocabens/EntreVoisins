@@ -12,6 +12,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.openclassrooms.entrevoisins.R;
@@ -31,24 +33,81 @@ import butterknife.OnClick;
 public class DetailNeighbourActivity extends AppCompatActivity {
 
     private NeighbourApiService mApiService;
-
     private Neighbour selectedNeighbour;
+
+    @BindView(R.id.detail_image_view)
+    ImageView mImageview;
+    @BindView(R.id.fab_favoris)
+    FloatingActionButton mFabFav;
+    @BindDrawable(R.drawable.ic_fav_on)
+    Drawable fav_on;
+    @BindDrawable(R.drawable.ic_fav_off)
+    Drawable fav_off;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_neighbour);
+        ButterKnife.bind(this);
         mApiService = DI.getNeighbourApiService();
+        selectedNeighbour = (Neighbour)getIntent().getSerializableExtra("neighbour");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Drawable avatar = Drawable.createFromPath(selectedNeighbour.getAvatarUrl());
+        mImageview.setImageDrawable(avatar);
+        reloadButton();
+        mFabFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               favouriteButtonEvent();
+            }
+        });
+        //TODO
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home : {
+                finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    /**
+     * Used to reload the favourite button display
+     */
+    private void reloadButton(){
+        if(selectedNeighbour.isFavourite()){
+            mFabFav.setImageDrawable(fav_on);
+        } else {
+            mFabFav.setImageDrawable(fav_off);
+        }
+    }
+
+    /**
+     * Called when the user clicks on the favourite button
+     */
+    private void favouriteButtonEvent(){
+        if(selectedNeighbour.isFavourite()){
+            selectedNeighbour.setIsFavourite(false);
+        } else {
+            selectedNeighbour.setIsFavourite(true);
+        }
+        reloadButton();
     }
 
     /**
      * Used to navigate to this activity
-     * @param context
+     * @param context context for the new activity
+     * @param neighbour the neighbour that we will show details about
+     *
      */
-    public static void navigate(Context context,Neighbour neighbour) {
-        Intent intent = new Intent().setClass(context,ListNeighbourActivity.class);
+    public static void navigate(Context context, Neighbour neighbour) {
+        Intent intent = new Intent().setClass(context,DetailNeighbourActivity.class);
         intent.putExtra("neighbour",neighbour);
         ActivityCompat.startActivity(context, intent, null);
     }

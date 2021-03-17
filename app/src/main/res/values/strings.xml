@@ -4,4 +4,7 @@
     <string name="tab_favorites_title">Favorites</string>
     <string name="activity_new_neighbour">New neighbour</string>
     <string name="a_propos_de_moi">A propos de moi</string>
+    <string name="detail_imgview_desc">image utilisateur</string>
+    <string name="detail_fab_desc">image utilisateur</string>
+
 </resources>

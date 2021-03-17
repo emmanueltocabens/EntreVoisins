@@ -1,14 +1,8 @@
 package com.openclassrooms.entrevoisins.ui.neighbour_list;
 
-import android.content.Context;
-import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -57,8 +51,7 @@ public class MyNeighbourRecyclerViewAdapter extends RecyclerView.Adapter<MyNeigh
         holder.mConstraintLayout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Context context = view.getContext();
-                DetailNeighbourActivity.navigate(context,neighbour);
+                DetailNeighbourActivity.navigate(view.getContext(),neighbour);
             }
         });
         holder.mDeleteButton.setOnClickListener(new View.OnClickListener() {
