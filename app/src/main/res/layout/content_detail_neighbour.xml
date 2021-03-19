@@ -18,7 +18,9 @@
             android:id="@+id/fab_favoris"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/detail_fab_desc" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.v7.widget.CardView
             android:id="@+id/cardview_info"
@@ -65,8 +67,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/a_propos_de_moi" />
+                android:layout_height="wrap_content" />
 
             <TextView
                 android:id="@+id/textview_description"

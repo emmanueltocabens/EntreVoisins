@@ -31,4 +31,6 @@ public interface NeighbourApiService {
     Neighbour getNeighbour(Neighbour neighbour);
 
     Neighbour toggleFavorite(Neighbour neighbour);
+
+    List<Neighbour> getFavoriteNeighbours();
 }
