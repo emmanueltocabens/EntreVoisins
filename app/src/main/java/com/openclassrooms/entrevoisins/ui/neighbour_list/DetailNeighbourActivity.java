@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
 import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
@@ -36,7 +38,7 @@ public class DetailNeighbourActivity extends AppCompatActivity {
     private Neighbour selectedNeighbour;
 
     @BindView(R.id.detail_image_view)
-    ImageView mImageview;
+    ImageView mImageView;
     @BindView(R.id.fab_favoris)
     FloatingActionButton mFabFav;
     @BindDrawable(R.drawable.ic_fav_on)
@@ -51,18 +53,19 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail_neighbour);
         ButterKnife.bind(this);
         mApiService = DI.getNeighbourApiService();
+
         selectedNeighbour = (Neighbour)getIntent().getSerializableExtra("neighbour");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Drawable avatar = Drawable.createFromPath(selectedNeighbour.getAvatarUrl());
-        mImageview.setImageDrawable(avatar);
-        reloadButton();
+        Glide.with(this)
+                .load(selectedNeighbour.getAvatarUrl())
+                .into(mImageView);
+
         mFabFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               favouriteButtonEvent();
+               favoriteButtonEvent();
             }
         });
-        //TODO
     }
 
     @Override
@@ -78,10 +81,10 @@ public class DetailNeighbourActivity extends AppCompatActivity {
 
 
     /**
-     * Used to reload the favourite button display
+     * Used to reload the favorite button display
      */
     private void reloadButton(){
-        if(selectedNeighbour.isFavourite()){
+        if(selectedNeighbour.isFavorite()){
             mFabFav.setImageDrawable(fav_on);
         } else {
             mFabFav.setImageDrawable(fav_off);
@@ -89,14 +92,10 @@ public class DetailNeighbourActivity extends AppCompatActivity {
     }
 
     /**
-     * Called when the user clicks on the favourite button
+     * Called when the user clicks on the favorite button
      */
-    private void favouriteButtonEvent(){
-        if(selectedNeighbour.isFavourite()){
-            selectedNeighbour.setIsFavourite(false);
-        } else {
-            selectedNeighbour.setIsFavourite(true);
-        }
+    private void favoriteButtonEvent(){
+        selectedNeighbour = mApiService.toggleFavorite(selectedNeighbour);
         reloadButton();
     }
 

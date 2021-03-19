@@ -22,10 +22,16 @@ public class ListNeighbourPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return NeighbourFragment.newInstance();
             case 1:
-                return FavouriteNeighbourFragment.newInstance();
+                return FavoriteNeighbourFragment.newInstance();
             default:
                 return null;
         }
+
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
 
     }
 
