@@ -55,7 +55,9 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         mApiService = DI.getNeighbourApiService();
 
         selectedNeighbour = (Neighbour)getIntent().getSerializableExtra("neighbour");
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Glide.with(this)
                 .load(selectedNeighbour.getAvatarUrl())
                 .into(mImageView);
@@ -63,7 +65,7 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         mFabFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               favoriteButtonEvent();
+                favoriteButtonClicked();
             }
         });
     }
@@ -94,8 +96,8 @@ public class DetailNeighbourActivity extends AppCompatActivity {
     /**
      * Called when the user clicks on the favorite button
      */
-    private void favoriteButtonEvent(){
-        selectedNeighbour = mApiService.toggleFavorite(selectedNeighbour);
+    private void favoriteButtonClicked(){
+        mApiService.toggleFavorite(selectedNeighbour);
         reloadButton();
     }
 

@@ -39,32 +39,13 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     }
 
     /**
-     * parse neighbours list to find a specific neighbour. returns null if not found.
-     * @param neighbour
-     * @return neighbour if found or null if not found
-     */
-    public Neighbour getNeighbour(Neighbour neighbour) {
-        for (Neighbour tmp : neighbours) {
-            if (tmp.equals(neighbour)) {
-                return tmp;
-            }
-        }
-        return null;
-    }
-
-    /**
      * sets isFavorite of given neighbour to false if it was true, or true if it was false
-      * @param neighbour the one we want to edit
+      * @param nb neighbour that must be edited
      * @return neighbour the object after edit
      */
-    public Neighbour toggleFavorite(Neighbour neighbour){
-        Neighbour temp = getNeighbour(neighbour);
-        if(temp.isFavorite()){
-            temp.setIsFavorite(false);
-        } else {
-            temp.setIsFavorite(true);
-        }
-        return temp;
+    public void toggleFavorite(Neighbour nb){
+        Neighbour temp = getNeighbours().get(neighbours.indexOf(nb));
+        temp.setIsFavorite(!temp.isFavorite());
     }
 
     /**
@@ -74,9 +55,8 @@ public class DummyNeighbourApiService implements  NeighbourApiService {
     public ArrayList<Neighbour> getFavoriteNeighbours() {
         ArrayList<Neighbour> favoriteNeighbours = new ArrayList<>();
         for(Neighbour temp : neighbours){
-            if(temp.isFavorite()){
+            if(temp.isFavorite())
                 favoriteNeighbours.add(temp);
-            }
         }
         return favoriteNeighbours;
     }

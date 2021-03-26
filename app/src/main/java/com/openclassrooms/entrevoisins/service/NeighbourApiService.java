@@ -28,9 +28,15 @@ public interface NeighbourApiService {
      */
     void createNeighbour(Neighbour neighbour);
 
-    Neighbour getNeighbour(Neighbour neighbour);
+    /**
+     * sets isFavorite of given neighbour to false if it was true, or true if it was false
+     * @param nb neighbour
+     */
+    void toggleFavorite(Neighbour nb);
 
-    Neighbour toggleFavorite(Neighbour neighbour);
-
+    /**
+     * returns a list of the user's favorite neighbours
+     * @return list of favorite neighbours
+     */
     List<Neighbour> getFavoriteNeighbours();
 }
