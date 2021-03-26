@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -46,6 +47,15 @@ public class DetailNeighbourActivity extends AppCompatActivity {
     @BindDrawable(R.drawable.ic_fav_off)
     Drawable fav_off;
 
+    @BindView(R.id.textview_address)
+    TextView textViewAddress;
+    @BindView(R.id.textview_description)
+    TextView textViewDesc;
+    @BindView(R.id.textview_name)
+    TextView textViewName;
+    @BindView(R.id.textview_number)
+    TextView textViewNumber;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +71,8 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         Glide.with(this)
                 .load(selectedNeighbour.getAvatarUrl())
                 .into(mImageView);
+
+        loadTextViewContents();
 
         mFabFav.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +93,13 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+    public void loadTextViewContents(){
+        textViewAddress.setText(selectedNeighbour.getAddress());
+        textViewDesc.setText(selectedNeighbour.getAboutMe());
+        textViewName.setText(selectedNeighbour.getName());
+        textViewNumber.setText(selectedNeighbour.getPhoneNumber());
+    }
 
     /**
      * Used to reload the favorite button display
