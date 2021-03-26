@@ -5,8 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/detail_coordinator_layout"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/image_height"
+    android:layout_height="match_parent"
     >
+
+
         <android.support.design.widget.AppBarLayout
             android:id="@+id/detail_appbarlayout"
             android:layout_width="match_parent"
@@ -24,6 +26,7 @@
                 app:contentScrim="@color/colorTrans">
 
                 <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar_detail"
                     android:layout_height="match_parent"
                     android:layout_width="match_parent"
                     />
@@ -38,7 +41,24 @@
 
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/image_height">
 
-    <include layout = "@layout/content_detail_neighbour"/>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_favoris"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="parent" />
+
+        <include layout = "@layout/content_detail_neighbour"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
 
 </android.support.design.widget.CoordinatorLayout>

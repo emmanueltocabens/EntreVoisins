@@ -54,15 +54,13 @@ public class NeighbourServiceTest {
         }
         assertEquals(neighbours.size(),expectedNeighbours.size());
         assertTrue(neighbours.containsAll(expectedNeighbours));
-        //assertThat(neighbours, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedNeighbours));
     }
 
     @Test
     public void toggleFavoriteWithSuccess(){
         List<Neighbour> allNeighbours = service.getNeighbours();
         Neighbour nb = allNeighbours.get(1);
-        boolean isFav = nb.isFavorite();
         service.toggleFavorite(nb);
-        assertFalse(isFav);
+        assertFalse(nb.isFavorite());
     }
 }

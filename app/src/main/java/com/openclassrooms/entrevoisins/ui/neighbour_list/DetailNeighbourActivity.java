@@ -47,6 +47,9 @@ public class DetailNeighbourActivity extends AppCompatActivity {
     @BindDrawable(R.drawable.ic_fav_off)
     Drawable fav_off;
 
+
+    @BindView(R.id.toolbar_detail)
+    Toolbar toolbar;
     @BindView(R.id.textview_address)
     TextView textViewAddress;
     @BindView(R.id.textview_description)
@@ -66,6 +69,7 @@ public class DetailNeighbourActivity extends AppCompatActivity {
 
         selectedNeighbour = (Neighbour)getIntent().getSerializableExtra("neighbour");
 
+        setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Glide.with(this)
@@ -85,10 +89,7 @@ public class DetailNeighbourActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home : {
-                finish();
-                return true;
-            }
+
         }
         return super.onOptionsItemSelected(item);
     }
