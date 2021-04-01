@@ -3,34 +3,25 @@ package com.openclassrooms.entrevoisins.ui.neighbour_list;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.openclassrooms.entrevoisins.R;
 import com.openclassrooms.entrevoisins.di.DI;
-import com.openclassrooms.entrevoisins.events.DeleteNeighbourEvent;
 import com.openclassrooms.entrevoisins.model.Neighbour;
 import com.openclassrooms.entrevoisins.service.NeighbourApiService;
 
-import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 
 public class DetailNeighbourActivity extends AppCompatActivity {
@@ -50,14 +41,20 @@ public class DetailNeighbourActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar_detail)
     Toolbar toolbar;
-    @BindView(R.id.textview_address)
-    TextView textViewAddress;
-    @BindView(R.id.textview_description)
-    TextView textViewDesc;
+
     @BindView(R.id.textview_name)
-    TextView textViewName;
+    TextView textView_title;
+    @BindView(R.id.textview_address)
+    TextView textView_Address;
     @BindView(R.id.textview_number)
-    TextView textViewNumber;
+    TextView textView_Number;
+    @BindView(R.id.textview_link)
+    TextView textView_Link;
+
+    @BindView(R.id.tv_aboutMe_title)
+    TextView textView_aboutMe_title;
+    @BindView(R.id.tv_aboutMe_desc)
+    TextView textView_aboutMe_desc;
 
 
     @Override
@@ -68,7 +65,7 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         mApiService = DI.getNeighbourApiService();
 
         selectedNeighbour = (Neighbour)getIntent().getSerializableExtra("neighbour");
-
+        toolbar.setTitle(selectedNeighbour.getName());
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -76,6 +73,7 @@ public class DetailNeighbourActivity extends AppCompatActivity {
                 .load(selectedNeighbour.getAvatarUrl())
                 .into(mImageView);
 
+        initButton();
         loadTextViewContents();
 
         mFabFav.setOnClickListener(new View.OnClickListener() {
@@ -86,20 +84,25 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-        }
-        return super.onOptionsItemSelected(item);
+    public void loadTextViewContents(){
+        textView_title.setText(selectedNeighbour.getName());
+        textView_Address.setText(selectedNeighbour.getAddress());
+        textView_Number.setText(selectedNeighbour.getPhoneNumber());
+        String link = "www.facebook.com/"+selectedNeighbour.getName();
+        textView_Link.setText(link);
+        textView_aboutMe_desc.setText(selectedNeighbour.getAboutMe());
     }
 
-
-    public void loadTextViewContents(){
-        textViewAddress.setText(selectedNeighbour.getAddress());
-        textViewDesc.setText(selectedNeighbour.getAboutMe());
-        textViewName.setText(selectedNeighbour.getName());
-        textViewNumber.setText(selectedNeighbour.getPhoneNumber());
+    private void initButton(){
+        if(selectedNeighbour.isFavorite()){
+            Glide.with(this)
+                    .load(fav_on)
+                    .into(mFabFav);
+        } else {
+            Glide.with(this)
+                    .load(fav_off)
+                    .into(mFabFav);
+        }
     }
 
     /**
@@ -107,9 +110,9 @@ public class DetailNeighbourActivity extends AppCompatActivity {
      */
     private void reloadButton(){
         if(selectedNeighbour.isFavorite()){
-            mFabFav.setImageDrawable(fav_on);
+            mFabFav.setImageResource(R.drawable.ic_fav_on);
         } else {
-            mFabFav.setImageDrawable(fav_off);
+            mFabFav.setImageResource(R.drawable.ic_fav_off);
         }
     }
 

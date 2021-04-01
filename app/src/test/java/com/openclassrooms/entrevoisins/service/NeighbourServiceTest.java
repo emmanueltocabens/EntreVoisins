@@ -45,22 +45,33 @@ public class NeighbourServiceTest {
     }
 
     @Test
-    public void getFavoriteNeighboursWithSuccess() {
-        List<Neighbour> neighbours = service.getFavoriteNeighbours();
-        List<Neighbour> expectedNeighbours = new ArrayList<>();
-        for (Neighbour tmp : neighbours){
-            if (tmp.isFavorite())
-                expectedNeighbours.add(tmp);
-        }
-        assertEquals(neighbours.size(),expectedNeighbours.size());
-        assertTrue(neighbours.containsAll(expectedNeighbours));
+    public void toggleFavoriteOnWithSuccess(){
+        List<Neighbour> allNeighbours = service.getNeighbours();
+        Neighbour nb = allNeighbours.get(0);
+        nb.setIsFavorite(false);
+        service.toggleFavorite(nb);
+        assertTrue(nb.isFavorite());
     }
 
     @Test
-    public void toggleFavoriteWithSuccess(){
+    public void toggleFavoriteOffWithSuccess(){
         List<Neighbour> allNeighbours = service.getNeighbours();
-        Neighbour nb = allNeighbours.get(1);
+        Neighbour nb = allNeighbours.get(0);
+        nb.setIsFavorite(true);
         service.toggleFavorite(nb);
         assertFalse(nb.isFavorite());
     }
+
+    @Test
+    public void getFavoriteNeighboursWithSuccess() {
+        Neighbour nb1 = service.getNeighbours().get(0);
+        nb1.setIsFavorite(true);
+        List<Neighbour> favNeighboursList = service.getFavoriteNeighbours();
+        assertTrue(favNeighboursList.contains(nb1));
+        service.toggleFavorite(nb1);
+        favNeighboursList = service.getFavoriteNeighbours();
+        assertFalse(favNeighboursList.contains(nb1));
+    }
+
+
 }
