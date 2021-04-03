@@ -88,20 +88,16 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         textView_title.setText(selectedNeighbour.getName());
         textView_Address.setText(selectedNeighbour.getAddress());
         textView_Number.setText(selectedNeighbour.getPhoneNumber());
-        String link = "www.facebook.com/"+selectedNeighbour.getName();
+        String link = "www.facebook.fr/"+selectedNeighbour.getName();
         textView_Link.setText(link);
         textView_aboutMe_desc.setText(selectedNeighbour.getAboutMe());
     }
 
     private void initButton(){
         if(selectedNeighbour.isFavorite()){
-            Glide.with(this)
-                    .load(fav_on)
-                    .into(mFabFav);
+            mFabFav.setImageDrawable(fav_on);
         } else {
-            Glide.with(this)
-                    .load(fav_off)
-                    .into(mFabFav);
+            mFabFav.setImageDrawable(fav_off);
         }
     }
 
@@ -110,9 +106,9 @@ public class DetailNeighbourActivity extends AppCompatActivity {
      */
     private void reloadButton(){
         if(selectedNeighbour.isFavorite()){
-            mFabFav.setImageResource(R.drawable.ic_fav_on);
+            mFabFav.setImageDrawable(fav_on);
         } else {
-            mFabFav.setImageResource(R.drawable.ic_fav_off);
+            mFabFav.setImageDrawable(fav_off);
         }
     }
 
@@ -120,8 +116,18 @@ public class DetailNeighbourActivity extends AppCompatActivity {
      * Called when the user clicks on the favorite button
      */
     private void favoriteButtonClicked(){
+        selectedNeighbour.setIsFavorite(!selectedNeighbour.isFavorite());
         mApiService.toggleFavorite(selectedNeighbour);
         reloadButton();
+    }
+
+
+    /**
+     * get selected neighbour for testing
+     * @return
+     */
+    public Neighbour getSelectedNeighbour(){
+        return this.selectedNeighbour;
     }
 
     /**
