@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.neighbour_list.DetailNeighbourActivity"
+    tools:showIn="@layout/activity_detail_neighbour"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="10dp"
+            app:cardMaxElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textview_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="text"
+                    android:textColor="@color/titleBlack"
+                    android:textSize="26sp" />
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/constraintLayout_margin"
+                    android:layout_marginBottom="@dimen/constraintLayout_margin">
+
+                    <ImageView
+                        android:id="@+id/imageView_ic_pin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/imgView_marginStart"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/ic_pin"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textview_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="2dp"
+                        android:text="text"
+                        app:layout_constraintStart_toEndOf="@+id/imageView_ic_pin"
+                        app:layout_constraintTop_toTopOf="@id/imageView_ic_pin" />
+
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/constraintLayout_margin"
+                    android:layout_marginBottom="@dimen/constraintLayout_margin">
+
+                    <ImageView
+                        android:id="@+id/imageView_ic_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/imgView_marginStart"
+                        android:src="@drawable/ic_phone"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textview_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="2dp"
+                        android:text="text"
+                        app:layout_constraintStart_toEndOf="@+id/imageView_ic_phone"
+                        app:layout_constraintTop_toTopOf="@id/imageView_ic_phone" />
+
+                </android.support.constraint.ConstraintLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/constraintLayout_margin"
+                    android:layout_marginBottom="@dimen/constraintLayout_margin">
+
+                    <ImageView
+                        android:id="@+id/imageView_ic_site"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/imgView_marginStart"
+                        android:src="@drawable/ic_site"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/imageView_ic_site" />
+
+                    <TextView
+                        android:id="@+id/textview_link"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="2dp"
+                        android:text="text"
+                        app:layout_constraintStart_toEndOf="@+id/imageView_ic_site"
+                        app:layout_constraintTop_toTopOf="@id/imageView_ic_site" />
+
+                </android.support.constraint.ConstraintLayout>
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            app:cardCornerRadius="10dp"
+            app:cardMaxElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_aboutMe_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/a_propos_de_moi"
+                    android:textColor="@color/titleBlack"
+                    android:textSize="26sp" />
+
+                <TextView
+                    android:id="@+id/tv_aboutMe_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/text_margin"
+                    android:text="text" />
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="500dp"/>
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

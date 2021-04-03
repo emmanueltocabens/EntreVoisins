@@ -1,7 +1,11 @@
 
 package com.openclassrooms.entrevoisins.neighbour_list;
 
+import android.support.test.espresso.ViewAction;
+import android.support.test.espresso.action.ViewActions;
+import android.support.test.espresso.assertion.ViewAssertions;
 import android.support.test.espresso.contrib.RecyclerViewActions;
+import android.support.test.espresso.ViewAction.*;
 import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
@@ -16,6 +20,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.pressBack;
+import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.assertThat;
 import static android.support.test.espresso.matcher.ViewMatchers.hasMinimumChildCount;
@@ -67,5 +73,34 @@ public class NeighboursListTest {
                 .perform(RecyclerViewActions.actionOnItemAtPosition(1, new DeleteViewAction()));
         // Then : the number of element is 11
         onView(ViewMatchers.withId(R.id.list_neighbours)).check(withItemCount(ITEMS_COUNT-1));
+    }
+
+    /**
+     * Displays details of the first neighbours, adds it to favorites
+     * Then does it again for the second neighbour
+     * Then swipes left and checks if 2 users are displayed
+     */
+    @Test
+    public void myFavoriteNeighboursList_isDisplaying_favoriteNeighbours(){
+        //Adds a first neighbour to favorites neighbours
+        onView(ViewMatchers.withId(R.id.list_neighbours))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+        onView(ViewMatchers.withId(R.id.fab_favoris))
+                .perform(click());
+        pressBack();
+
+        //Adds a second neighbour to favorites neighbours
+        onView(ViewMatchers.withId(R.id.list_neighbours))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(1, click()));
+        onView(ViewMatchers.withId(R.id.fab_favoris))
+                .perform(click());
+        pressBack();
+
+
+        //swipes to favorite neighbours and checks if it has 2 favorite neighbours
+        onView(ViewMatchers.withId(R.id.main_content))
+                .perform(ViewActions.swipeLeft());
+        onView(ViewMatchers.withId(R.id.list_favorite_neighbours))
+                .check(withItemCount(2));
     }
 }
