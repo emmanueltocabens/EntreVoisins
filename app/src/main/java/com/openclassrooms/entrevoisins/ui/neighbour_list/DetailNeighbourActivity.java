@@ -73,7 +73,7 @@ public class DetailNeighbourActivity extends AppCompatActivity {
                 .load(selectedNeighbour.getAvatarUrl())
                 .into(mImageView);
 
-        initButton();
+        reloadButton();
         loadTextViewContents();
 
         mFabFav.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +84,9 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Loads text views with the neighbour's information
+     */
     public void loadTextViewContents(){
         textView_title.setText(selectedNeighbour.getName());
         textView_Address.setText(selectedNeighbour.getAddress());
@@ -91,14 +94,6 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         String link = "www.facebook.fr/"+selectedNeighbour.getName();
         textView_Link.setText(link);
         textView_aboutMe_desc.setText(selectedNeighbour.getAboutMe());
-    }
-
-    private void initButton(){
-        if(selectedNeighbour.isFavorite()){
-            mFabFav.setImageDrawable(fav_on);
-        } else {
-            mFabFav.setImageDrawable(fav_off);
-        }
     }
 
     /**
@@ -119,15 +114,6 @@ public class DetailNeighbourActivity extends AppCompatActivity {
         selectedNeighbour.setIsFavorite(!selectedNeighbour.isFavorite());
         mApiService.toggleFavorite(selectedNeighbour);
         reloadButton();
-    }
-
-
-    /**
-     * get selected neighbour for testing
-     * @return
-     */
-    public Neighbour getSelectedNeighbour(){
-        return this.selectedNeighbour;
     }
 
     /**
