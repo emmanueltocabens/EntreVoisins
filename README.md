@@ -10,7 +10,7 @@ Ce readme.md est destiné à détailler toutes les étapes de configurations né
 ![image](https://user-images.githubusercontent.com/22189275/113720356-d54e6680-96ee-11eb-99a3-6e58e5b4070f.png)
 
 ### Obtenir un émulateur Android
-* Utilisez l'émulateur Android pour obtenir un appareil fonctionnel ![image](https://user-images.githubusercontent.com/22189275/113721596-f2d00000-96ef-11eb-8e1d-7001aa7c6938.png)
+* Utilisez l'émulateur Android pour tester l'application sur votre ordinateur ![image](https://user-images.githubusercontent.com/22189275/113721596-f2d00000-96ef-11eb-8e1d-7001aa7c6938.png)
 * Version conseillée API 28 (Android 9.0)
 
 ### Lancer l'application
