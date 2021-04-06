@@ -100,11 +100,13 @@ public class DetailNeighbourActivity extends AppCompatActivity {
      * Used to reload the favorite button display
      */
     private void reloadButton(){
+        mFabFav.hide();
         if(selectedNeighbour.isFavorite()){
             mFabFav.setImageDrawable(fav_on);
         } else {
             mFabFav.setImageDrawable(fav_off);
         }
+        mFabFav.show();
     }
 
     /**
