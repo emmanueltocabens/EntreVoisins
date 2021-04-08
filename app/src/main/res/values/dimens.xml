@@ -9,7 +9,8 @@
     <dimen name="guide_margin">220dp</dimen>
     <dimen name="textView_margin">8dp</dimen>
     <dimen name="textView_size">32dp</dimen>
-    <dimen name="cardView_margin">8dp</dimen>
+    <dimen name="cardView_marginTop">16dp</dimen>
+    <dimen name="cardView_marginStart">12dp</dimen>
     <dimen name="cardView_size">256dp</dimen>
     <dimen name="appbar_size">100dp</dimen>
     <dimen name="tv_desc_size">100dp</dimen>

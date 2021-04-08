@@ -13,15 +13,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/lightGreyBackground">
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="@dimen/cardView_marginStart"
+            android:layout_marginTop="@dimen/cardView_marginTop"
+            android:layout_marginEnd="@dimen/cardView_marginStart"
             app:cardCornerRadius="10dp"
             app:cardMaxElevation="2dp">
 
@@ -34,8 +34,8 @@
                     android:id="@+id/textview_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="16dp"
                     android:text="text"
                     android:textColor="@color/titleBlack"
                     android:textSize="26sp" />
@@ -129,10 +129,10 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="@dimen/cardView_marginStart"
+            android:layout_marginTop="@dimen/cardView_marginTop"
+            android:layout_marginEnd="@dimen/cardView_marginStart"
+            android:layout_marginBottom="@dimen/cardView_marginTop"
             app:cardCornerRadius="10dp"
             app:cardMaxElevation="2dp">
 
@@ -164,7 +164,11 @@
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="500dp"/>
+            android:layout_height="500dp"
+            android:layout_marginStart="@dimen/cardView_marginStart"
+            android:layout_marginTop="@dimen/cardView_marginTop"
+            android:layout_marginEnd="@dimen/cardView_marginStart"
+            android:layout_marginBottom="@dimen/cardView_marginTop"/>
     </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>
